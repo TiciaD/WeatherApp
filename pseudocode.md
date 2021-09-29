@@ -38,4 +38,15 @@ Could Have
 ## Define Objects and Functions
 State
     - INIT onLoad() ---> function to run when webpage is first loaded, should contain initial display with input bar and submit button
-    - INIT newWeather() --->
+    - INIT onSubmit() ---> function to run when Submit button is pressed (or when ENTER key is pressed), should perform GET request with user input data
+    - INIT newWeather() ---> function to run when data retrieved from API, should display location, temperature and weather condition from weather object
+    - (OPTIONAL) INIT loading() ---> function to run while fetching data, should display loading bar
+
+Weather{}
+    - currentZip ---> user input zipCode, needs to be parsed to make sure it's a valid ZIP
+    - currentWeather ---> assigned weather condition from weather.main in API
+    - temperature ---> assigned temperature from main.temp in API
+    - location ---> assigned location from city name in API
+    - tempC ---> calculate temperature in Celsius from API data or get assigned form API data
+    - tempF ---> calculate temperature in Fahrenheit from API data or get assigned from API data
+    - icon ---> assigned icon from weather.icon in API
