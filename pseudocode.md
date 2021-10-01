@@ -42,7 +42,7 @@ Won't Have
 
 - INIT onSearch() ---> function to run when Search button is pressed (or when ENTER key is pressed), should perform GET request with user input data  
 
-- INIT newWeather() ---> function to run when data retrieved from API, should display location, temperature and weather condition from weather object  
+- INIT updateView() ---> function to run when data retrieved from API, should display location, temperature and weather condition from weather object  
 
 - INIT isValid() ---> true/false function to check if user input zip code is a valid zip code
 
@@ -75,6 +75,15 @@ window.onload =
     HIDE main section w/ location, temperature, and weather condition data
 ```
 
+INIT updateView()
+```
+DISPLAY weather table
+table.innerHTML = weather.location
+table.innerHTML = weather.temperature
+table.innerHTML = weather.condition
+createElement(img)
+```
+
 INIT isValid()
 ```
 GET form.value
@@ -86,4 +95,10 @@ END IF
 ```
 
 INIT onSearch()
+```
+IF isValid === true
+    THEN fetch API(zip)
+    updateView(userWeather)
+END IF
+```
 
