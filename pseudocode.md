@@ -27,7 +27,8 @@ Could Have
 - accept user input after user submits valid ZIP code without having to press a button
 - Display loading icon while requesting data
 
-
+Won't Have
+- Animations
 
 ## Objects
 1. Weather
@@ -36,17 +37,53 @@ Could Have
     - Store weather condition, temperature and location in object
 
 ## Define Objects and Functions
-State
-    - INIT onLoad() ---> function to run when webpage is first loaded, should contain initial display with input bar and submit button
-    - INIT onSubmit() ---> function to run when Submit button is pressed (or when ENTER key is pressed), should perform GET request with user input data
-    - INIT newWeather() ---> function to run when data retrieved from API, should display location, temperature and weather condition from weather object
-    - (OPTIONAL) INIT loading() ---> function to run while fetching data, should display loading bar
+### State  
+- INIT onLoad() ---> function to run when webpage is first loaded, should contain initial display with input bar and submit button  
 
-Weather{}
-    - currentZip ---> user input zipCode, needs to be parsed to make sure it's a valid ZIP
-    - currentWeather ---> assigned weather condition from weather.main in API
-    - temperature ---> assigned temperature from main.temp in API
-    - location ---> assigned location from city name in API
-    - tempC ---> calculate temperature in Celsius from API data or get assigned form API data
-    - tempF ---> calculate temperature in Fahrenheit from API data or get assigned from API data
-    - icon ---> assigned icon from weather.icon in API
+- INIT onSearch() ---> function to run when Search button is pressed (or when ENTER key is pressed), should perform GET request with user input data  
+
+- INIT newWeather() ---> function to run when data retrieved from API, should display location, temperature and weather condition from weather object  
+
+- INIT isValid() ---> true/false function to check if user input zip code is a valid zip code
+
+- (OPTIONAL) INIT loading() ---> function to run while fetching data, should display loading bar  
+
+- currentZip ---> user input zipCode, needs to be parsed to make sure it's a valid ZIP  
+
+
+### Weather{}
+- currentWeather ---> assigned weather condition from weather.main in API  
+
+- temperature ---> assigned temperature from main.temp in API  
+
+- location ---> assigned location from city name in API  
+
+- tempK ---> assigned temperature in Kelvin from temperature in API  
+
+- tempC() ---> calculate temperature in Celsius from API data or get assigned form API data  
+
+- tempF() ---> calculate temperature in Fahrenheit from API data or get assigned from API data  
+
+- icon ---> assigned icon from weather.icon in API  
+
+## Pseudocode
+INIT onLoad()
+```
+window.onload = 
+    DISPLAY input bar w/ submit button
+    DISPLAY top navBar
+    HIDE main section w/ location, temperature, and weather condition data
+```
+
+INIT isValid()
+```
+GET form.value
+IF form.value == 5 AND isNaN = false THEN
+    RETURN true
+ELSE
+    DISPLAY 'Enter valid ZIP Code'
+END IF
+```
+
+INIT onSearch()
+

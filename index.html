@@ -11,13 +11,83 @@
     <title>Weather</title>
   </head>
   <body>
-    <header>
-        <nav class="navbar fixed-top navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">What's The Weather?</a>
+      <header>
+        <container>
+            <div class="row">
+                <div class="col">
+                    <nav class="navbar fixed-top navbar-light bg-light">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="index.html">What's The Weather?</a>
+                        </div>
+                    </nav>
+                </div>
             </div>
-        </nav>
+        </container>
     </header>
+
+    <section>
+        <form class="container" id="myform">
+            <div class="row mt-4 mb-2">
+                <div class="col mt-5 mx-5">   
+                    <div class="input-group mb-3" id="navMenu">
+                        <input type="text" id="userZip" class="form-control" placeholder="Enter ZIP code" aria-label="Enter ZIP code" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" id="search" type="submit" id="button-addon2">SEARCH</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section>
+
+            <table class="table table-bordered fs-5 text-center">
+                <thead>
+                    <tr class="table-warning">
+                    <th scope="col">Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td class="align-middle">City</td>
+                    </tr>
+                </tbody>
+            </table>
+
+    </section>
+
+    <section>
+        <table class="table table-bordered fs-5 text-center">
+                <thead>
+                    <tr class="table-warning">
+                    <th scope="col" colspan="3">Temperature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td class="align-middle" colspan="1">70F</td>
+                    <td class="align-middle" colspan="1">200K</td>
+                    <td class="align-middle" colspan="1">30C</td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        <table class="table table-bordered fs-5 text-center">
+                <thead>
+                    <tr class="table-warning">
+                    <th scope="col" colspan="3">Weather Condition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td class="align-middle" colspan="2">Condition</td>
+                    <td class="align-middle" colspan="2">Icon</td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+
 
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
