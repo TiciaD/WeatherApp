@@ -81,7 +81,7 @@ DISPLAY weather table
 table.innerHTML = weather.location
 table.innerHTML = weather.temperature
 table.innerHTML = weather.condition
-createElement(img)
+createElement(img) = weather.icon
 ```
 
 INIT isValid()

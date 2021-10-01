@@ -1,11 +1,12 @@
 // initialize a class to hold weather data from API
 class Weather{
-    constructor(city, tempK, condition, description, icon){
+    constructor(city, tempK, condition, description, icon, humidity){
         this.city = city;
         this.tempK = tempK;
         this.condition = condition;
         this.description = description;
         this.icon = icon;
+        this.humidity = humidity;
     }
     // function to convert Kelvin temperature to Celsius
     celsius() {
@@ -26,22 +27,25 @@ class Weather{
         table2.style.visibility = "visible";
         let newTempF = document.getElementById('Ftemp');
         // call fahrenheit function, round it and add an F
-        newTempF.innerText = Math.round(this.fahrenheit()) + 'F';
+        newTempF.innerText = Math.round(this.fahrenheit()) + ' \xB0' + 'F' ;
         let newTempK = document.getElementById('Ktemp');
-        newTempK.innerText = Math.round(this.tempK) + 'K';
+        newTempK.innerText = Math.round(this.tempK) + ' K';
         // call celsius function, round it and add a C
         let newTempC = document.getElementById('Ctemp');
-        newTempC.innerText = Math.round(this.celsius()) + 'C';
+        newTempC.innerText = Math.round(this.celsius()) + ' \xB0' + 'C';
 
         // display third table and change text to weather condition value from API
         table3.style.visibility = "visible";
         let newCondition = document.getElementById('con');
-        // add icon image to HTML
         newCondition.innerText = `${this.condition}
         ${this.description}`;
+
+        // add icon image to HTML, change text to feels like
+        let newFeelsLike = document.getElementById('pic');
+        newFeelsLike.innerText = `Humidity: ${this.humidity}`
         var newIcon = document.createElement('img');
         newIcon.src = `./img/${this.icon}.png`;
-        document.getElementById('pic').appendChild(newIcon);
+        document.getElementById('pic').appendChild(newIcon);    
     }
 }
 
@@ -105,7 +109,8 @@ btn.addEventListener('submit', function (event) {
                 res.data.main.temp,
                 res.data.weather[0].main,
                 res.data.weather[0].description,
-                res.data.weather[0].icon
+                res.data.weather[0].icon,
+                res.data.main.humidity
                 )
             console.log(userWeather)
             console.log(userWeather.celsius())
