@@ -18,12 +18,12 @@ class Weather{
     // function to change state with values from weather class
     updateView() {
         // display first table and change text to city name from API
-        table1.style.display = "block";
+        table1.style.visibility = "visible";
         let newLocation = document.getElementById('loc');
         newLocation.innerText = this.city;
 
         // display second table and change text to temperature value from API
-        table2.style.display = "block";
+        table2.style.visibility = "visible";
         let newTempF = document.getElementById('Ftemp');
         // call fahrenheit function, round it and add an F
         newTempF.innerText = Math.round(this.fahrenheit()) + 'F';
@@ -34,13 +34,14 @@ class Weather{
         newTempC.innerText = Math.round(this.celsius()) + 'C';
 
         // display third table and change text to weather condition value from API
-        table3.style.display = "block";
+        table3.style.visibility = "visible";
         let newCondition = document.getElementById('con');
         // add icon image to HTML
         newCondition.innerText = `${this.condition}
         ${this.description}`;
-        let newIcon = document.getElementById('pic');
+        var newIcon = document.createElement('img');
         newIcon.src = `./img/${this.icon}.png`;
+        document.getElementById('pic').appendChild(newIcon);
     }
 }
 
@@ -52,9 +53,9 @@ newAlert = null;
 // onLoad function to run when page is first loaded
 window.onload = function() {
     // hide all tables, only display search bar
-    table1.style.display = "none";
-    table2.style.display = "none";
-    table3.style.display = "none";
+    table1.style.visibility = "hidden";
+    table2.style.visibility = "hidden";
+    table3.style.visibility = "hidden";
 }
 
 // create an alert for when user enters invalid ZIP
@@ -94,7 +95,7 @@ btn.addEventListener('submit', function (event) {
     if(isValid(myZip) === true) {
         console.log('it worked!')
         // Make a request for a user with a given ID
-        axios.get('https://api.openweathermap.org/data/2.5/weather?zip=40509&appid=c5616fb2308859555306704133216429')
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${myZip}&appid=c5616fb2308859555306704133216429`)
         .then(function (res) {
             // handle success;
             console.log(res)
