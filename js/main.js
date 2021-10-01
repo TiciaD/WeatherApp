@@ -1,12 +1,13 @@
 // initialize a class to hold weather data from API
 class Weather{
-    constructor(city, tempK, condition, description, icon, humidity){
+    constructor(city, tempK, condition, description, icon, humidity, realFeel){
         this.city = city;
         this.tempK = tempK;
         this.condition = condition;
         this.description = description;
         this.icon = icon;
         this.humidity = humidity;
+        this.realFeel = realFeel;
     }
     // function to convert Kelvin temperature to Celsius
     celsius() {
@@ -18,6 +19,8 @@ class Weather{
     }
     // function to change state with values from weather class
     updateView() {
+        newAlert.remove();
+
         // display first table and change text to city name from API
         table1.style.visibility = "visible";
         let newLocation = document.getElementById('loc');
@@ -40,19 +43,19 @@ class Weather{
         newCondition.innerText = `${this.condition}
         ${this.description}`;
 
-        // add icon image to HTML, change text to feels like
-        let newFeelsLike = document.getElementById('pic');
-        newFeelsLike.innerText = `Humidity: ${this.humidity}`
+        // add icon image to HTML, change text to Humidity
+        let newHumidity = document.getElementById('pic');
+        newHumidity.innerText = `Humidity: ${this.humidity}`
         var newIcon = document.createElement('img');
         newIcon.src = `./img/${this.icon}.png`;
         document.getElementById('pic').appendChild(newIcon);    
     }
-}
+};
 
 var table1 = document.getElementById('table1');
 var table2 = document.getElementById('table2');
 var table3 = document.getElementById('table3');
-newAlert = null;
+let newAlert = '';
 
 // onLoad function to run when page is first loaded
 window.onload = function() {
@@ -70,9 +73,13 @@ function myAlert(message){
     newAlert.role = "alert";
     newAlert.id = "alertDiv";
 
-    // add newAlert div to end of #myform element
-    document.querySelector('#myform').append(newAlert);
-}
+    // add newAlert div to end of #error element
+    let newError = document.querySelector('#error');
+    // set to empty first in case HTML was already filled so it doesn't create multiple alerts
+    newError.innerHTML = '';
+    // append after set to empty
+    newError.append(newAlert);
+};
 
 // function to check if user input is valid ZIP code
 function isValid(zip) {
@@ -85,7 +92,7 @@ function isValid(zip) {
         myAlert('Enter a Valid ZIP code!');
         console.log('Enter a Valid ZIP code');
     }
-}
+};
 
 // create event listener to submit form when user inputs a value
 let btn = document.getElementById('myform');
@@ -103,14 +110,15 @@ btn.addEventListener('submit', function (event) {
         .then(function (res) {
             // handle success;
             console.log(res)
-            // if request successful, create new class with data assigned to Weather objects
+            // if request successful, create new class with data from API assigned to Weather objects
             let userWeather = new Weather(
                 res.data.name,
                 res.data.main.temp,
                 res.data.weather[0].main,
                 res.data.weather[0].description,
                 res.data.weather[0].icon,
-                res.data.main.humidity
+                res.data.main.humidity,
+                res.data.main.feels_like,
                 )
             console.log(userWeather)
             console.log(userWeather.celsius())
@@ -119,6 +127,7 @@ btn.addEventListener('submit', function (event) {
         })
         .catch(function (error) {
             // handle error
+            alert('Error occurred, refresh!');
             console.log(error);
         })
         .then(function () {

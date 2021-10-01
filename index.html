@@ -15,7 +15,7 @@
         <container>
             <div class="row">
                 <div class="col">
-                    <nav class="navbar fixed-top navbar-light bg-light">
+                    <nav class="navbar fixed-top navbar-dark bg-secondary bg-gradient">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="index.html">What's The Weather?</a>
                         </div>
@@ -31,18 +31,19 @@
                 <div class="col mt-5 mx-5">   
                     <div class="input-group mb-3" id="navMenu">
                         <input type="text" id="userZip" class="form-control" placeholder="Enter ZIP code" aria-label="Enter ZIP code" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" id="search" type="submit" id="button-addon2">SEARCH</button>
+                        <button class="btn btn-secondary" id="search" type="submit" id="button-addon2">SEARCH</button>
                     </div>
                 </div>
             </div>
         </form>
+        <div id="error"></div>
     </section>
 
     <section>
 
             <table id="table1" class="table table-bordered fs-5 text-center">
                 <thead>
-                    <tr class="table-warning">
+                    <tr class="table-secondary">
                     <th scope="col">Location</th>
                     </tr>
                 </thead>
@@ -58,7 +59,7 @@
     <section>
         <table id="table2" class="table table-bordered fs-5 text-center">
                 <thead>
-                    <tr class="table-warning">
+                    <tr class="table-secondary">
                     <th scope="col" colspan="3">Temperature</th>
                     </tr>
                 </thead>
@@ -75,7 +76,7 @@
     <section>
         <table id="table3" class="table table-bordered fs-5 text-center">
                 <thead>
-                    <tr class="table-warning">
+                    <tr class="table-secondary">
                     <th scope="col" colspan="3">Weather Condition</th>
                     </tr>
                 </thead>
