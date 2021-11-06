@@ -19,7 +19,7 @@ class Weather{
     }
     // function to change state with values from weather class
     updateView() {
-        newAlert.remove();
+        // newAlert.remove();
 
         // display first table and change text to city name from API
         table1.style.visibility = "visible";
